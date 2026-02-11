@@ -1,0 +1,11 @@
+GET http://127.0.0.1:3000/api/avgAr
+###
+
+POST http://127.0.0.1:3000/api/insertInto
+content-type: application/json
+
+{
+    "nev": "Pizza",
+    "ar": 7002,
+    "finom": "Nagyoon finóm!"
+}

@@ -41,4 +41,33 @@ router.get('/testsql', async (request, response) => {
     }
 });
 
+router.post('/insertInto', async (request, response) => {
+    const body = request.body;
+    try {
+        const insertInto = await database.insertInto(body.nev, body.ar, body.finom);
+        response.status(200).json({
+            message: 'Ez a végpont működik.',
+            insertId: insertInto
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
+router.get('/avgAr', async (request, response) => {
+    try {
+        const selectAvg = await database.selectAvgAr();
+        response.status(200).json({
+            message: 'Ez a végpont működik.',
+            results: selectAvg
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
 module.exports = router;
