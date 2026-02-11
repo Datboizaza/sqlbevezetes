@@ -27,11 +27,53 @@ router.get('/test', (request, response) => {
 });
 
 //?GET /api/testsql
-router.get('/testsql', async (request, response) => {
+// router.get('/testsql', async (request, response) => {
+//     try {
+//         const selectall = await database.selectall();
+//         response.status(200).json({
+//             message: 'Ez a végpont működik.',
+//             results: selectall
+//         });
+//     } catch (error) {
+//         response.status(500).json({
+//             message: 'Ez a végpont nem működik.'
+//         });
+//     }
+// });
+
+// router.post('/insertInto', async (request, response) => {
+//     const body = request.body;
+//     try {
+//         const insertInto = await database.insertInto(body.nev, body.ar, body.finom);
+//         response.status(200).json({
+//             message: 'Ez a végpont működik.',
+//             insertId: insertInto
+//         });
+//     } catch (error) {
+//         response.status(500).json({
+//             message: 'Ez a végpont nem működik.'
+//         });
+//     }
+// });
+
+// router.get('/avgAr', async (request, response) => {
+//     try {
+//         const selectAvg = await database.selectAvgAr();
+//         response.status(200).json({
+//             message: 'Ez a végpont működik.',
+//             results: selectAvg
+//         });
+//     } catch (error) {
+//         response.status(500).json({
+//             message: 'Ez a végpont nem működik.'
+//         });
+//     }
+// });
+
+router.get('/categories', async (request, response) => {
     try {
-        const selectall = await database.selectall();
+        const selectall = await database.selectAllCateg();
         response.status(200).json({
-            message: 'Ez a végpont működik.',
             results: selectall
         });
     } catch (error) {
@@ -41,12 +83,11 @@ router.get('/testsql', async (request, response) => {
     }
 });
 
-router.post('/insertInto', async (request, response) => {
+router.post('/categories', async (request, response) => {
     const body = request.body;
     try {
-        const insertInto = await database.insertInto(body.nev, body.ar, body.finom);
+        const insertInto = await database.insertIntoCateg(body.nev);
         response.status(200).json({
-            message: 'Ez a végpont működik.',
             insertId: insertInto
         });
     } catch (error) {
@@ -56,12 +97,12 @@ router.post('/insertInto', async (request, response) => {
     }
 });
 
-router.get('/avgAr', async (request, response) => {
+router.post('/updatecategories/:id', async (request, response) => {
+    const body = request.body;
     try {
-        const selectAvg = await database.selectAvgAr();
+        const update = await database.updateCateg(body.nev);
         response.status(200).json({
-            message: 'Ez a végpont működik.',
-            results: selectAvg
+            insertId: update
         });
     } catch (error) {
         response.status(500).json({

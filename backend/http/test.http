@@ -9,3 +9,17 @@ content-type: application/json
     "ar": 7002,
     "finom": "Nagyoon finóm!"
 }
+
+###
+
+POST http://127.0.0.1:3000/api/updatecategories/:2
+content-type: application/json
+
+{
+    "nev": "faszocska"
+}
+
+###
+
+GET http://127.0.0.1:3000/api/categories
+
