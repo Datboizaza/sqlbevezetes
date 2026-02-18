@@ -19,7 +19,7 @@ async function allDiak() {
 }
 async function idLekerdez(diak_id) {
     const query =
-        'SELECT jegy.jegy FROM jegy JOIN diak ON jegy.diak_Id = diak.id  WHERE diak_id = ?;';
+        'SELECT jegy.tantargy, jegy.jegy, tanar.nev, jegy.datum FROM jegy JOIN diak ON jegy.diak_Id = diak.id JOIN tanar ON jegy.tanar_id = tanar.id  WHERE diak_id = ?;';
     try {
         const [rows] = await pool.execute(query, [diak_id]);
         return rows;
